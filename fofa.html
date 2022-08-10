@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+    <head>
+        <title>like4h-FOFA 在线高级搜索小工具</title>
+        <script type="text/javascript" src="jquery.min.js?ver=1.92" id="jquery.min-js"></script>
+        <link rel="stylesheet" id="font-awesome-css" href="font-awesome.min.css?ver=1.92" type="text/css" media="all">
+        <script src="jquery.table2excel.min.js"></script>
+        <script src="js.js"></script>
+        <style type="text/css">
+    .mk-alert.danger{background-color:#fef0f0;color:#f56c6c}
+    .mk-alert{padding:10px 15px;border-radius:3px;margin:1em auto;line-height:1.5em;display:block;background-color:#f0f9eb;color:#67c23a}
+    .gbi{position:sticky;top:5px;right:10px;left:100%}
+    .fofa_bq{background:#1f8076;color:#fff;padding:6px 12px}
+    .btn{padding:6px 12px;margin-right:4px;margin-bottom:4px;display:inline-block;line-height:1.5}
+    .btn,button{border:0;background:#eb5055;color:#fff;cursor:pointer;opacity:1;user-select:none}
+    .fofa_input{margin-left:-5px;padding:5px 10px 5px 10px}
+    input,textarea{width:100%;padding:5px;box-sizing:border-box;border:1px solid #e5e9ef;background-color:#f4f5f7;resize:vertical}
+    .btn,button,input:not([type~=checkbox]):not([type~=radio]),textarea{-webkit-transition:.2s;-moz-transition:.2s;-ms-transition:.2s;-o-transition:.2s;transition:.2s;font-size:1em;border-radius:3px;-webkit-appearance:none}
+    h2{font-weight:600;position:relative;margin:10px 0 10px;font-size:1.3em;color:#444;margin-left:2%}
+    h2:before{font-weight:600;position:absolute;top:0;left:-15px;content:'#';color:#eb5055}
+    .white_content{display:none;position:absolute;top:0;left:15%;width:60%;height:90%;padding:15px;box-shadow:2px 2px 10px 5px #b3b2b2;background-color:#fff;z-index:1002;overflow:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+    .mk-alert.info{background-color:#f4f4f5;color:#909399}
+    table{border-collapse:collapse;border-spacing:0}
+    table td,table th{border:1px solid #f2f2f2;padding:8px}
+    .fancybox-close-small:focus,a:focus,button:focus,input:focus,select:focus,textarea:focus{outline:0}
+    .btn:active,button:active{opacity:1}
+    .btn:focus,.btn:hover,button:focus,button:hover{opacity:.9}
+    a{text-decoration:none;color:#313131}
+    .fofa_select{padding:6px 12px;border:1px solid #ccc;border-radius:4px}
+    a:not([class]):not([data-fancybox]){color:#313131;border-bottom:1px solid #ccc;text-decoration:none;margin:0 5px}
+    body{
+      background: url(back2.jpg) no-repeat;
+      background-size: 100% 100% ;
+      background-attachment: fixed;
+    }
+        </style>
+    </head>
+    <body>
+        <div class="right-box animate__animated">
+            <div class="the_content">
+                <div class="entry-content status-publish" itemprop="articleBody">
+                <div class="mk-alert danger">
+                    <p>FOFA 搜索引擎高级会员搜索小工具，请遵守网络安全法规-禁止黄赌毒！！！！</p>
+                </div>    
+                <div data-example-id="form-inline-with-input-group">
+                    <form onsubmit="return false" action="##" method="post" id="run_form">
+                      <div>
+                        <label class="sr-only" for="exampleInputAmount">fofa</label>
+                        <div class="">
+                          <span class="fofa_bq">语法</span>
+                          <input type="text" class="fofa_input" style="width: 40%;" name="fofa_yf" id="fofa_yf" value='' placeholder='header="ThinkPHP" && body="/index.php/admin"'>
+                          <a href = "http://blog.like4h.top/" target="_blank">使用帮助</a>
+                          <a href = "javascript:void(0)"onclick="document.getElementById('light').style.display='block';">语法详解</a>
+                          <div id="light" class="white_content">
+                                <a href = "javascript:void(0)" onclick ="document.getElementById('light').style.display='none';" class="gbi"><i class="fa fa-times-rectangle fa-lg"></i></a>
+                                <h2>查询语法参考</h2>
+                                <div class="mk-alert info">
+                                    <p>直接输入查询语句，将从标题，html内容，http头信息，url字段中搜索；</p>
+                                    <p>如果查询表达式有多个与或关系，尽量在外面用（）包含起来；</p>
+                                    <p>* 新增==完全匹配的符号，可以加快搜索速度，比如查找qq.com所有host，可以是domain=="qq.com" *</p>
+                                </div>
+                                <h2>高级搜索</h2>
+                                <div class="mk-alert info">
+                                    <p>可以使用括号 和 && || !=等符号，如</p>
+                                    <p></p>
+                                    <p>title="powered by" && title!=discuz</p>
+                                    <p>title="powered by" && title!=discuz</p>
+                                    <p>( body="content="WordPress" || (header="X-Pingback" && header="/xmlrpc.php" && body="/wp-includes/") && host="gov.cn"</p>
+                                </div>
+                                <table class="layui-table normal table-content">
+                                    <tbody><tr>
+                                    <td style="min-width: 42%;">title="beijing"</td>
+                                    <td style="min-width: 30%;">从标题中搜索“北京”</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">header="jboss"</td>
+                                    <td style="min-width: 30%;">从http头中搜索“jboss”</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">body="Hacked by"</td>
+                                    <td style="min-width: 30%;">从html正文中搜索abc</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">domain="qq.com"</td>
+                                    <td style="min-width: 30%;">搜索根域名带有qq.com的网站。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">icon_hash="-247388890"</td>
+                                    <td style="min-width: 30%;">搜索使用此icon的资产。</td>
+                                    <td style="min-width: 28%;">仅限高级会员使用</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">host=".gov.cn"</td>
+                                    <td style="min-width: 30%;">从url中搜索”.gov.cn”</td>
+                                    <td style="min-width: 28%;">搜索要用host作为名称</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">port="443"</td>
+                                    <td style="min-width: 30%;">查找对应“443”端口的资产</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip="1.1.1.1"</td>
+                                    <td style="min-width: 30%;">从ip中搜索包含“1.1.1.1”的网站</td>
+                                    <td style="min-width: 28%;">搜索要用ip作为名称</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip="220.181.111.1/24"</td>
+                                    <td style="min-width: 30%;">查询IP为“220.181.111.1”的C网段资产</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">status_code="402"</td>
+                                    <td style="min-width: 30%;">查询服务器状态为“402”的资产</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">protocol="https"</td>
+                                    <td style="min-width: 30%;">查询https协议资产</td>
+                                    <td style="min-width: 28%;">搜索指定协议类型(在开启端口扫描的情况下有效)</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">city="Hangzhou"</td>
+                                    <td style="min-width: 30%;">搜索指定城市的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">region="Zhejiang"</td>
+                                    <td style="min-width: 30%;">搜索指定行政区的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">country="CN"</td>
+                                    <td style="min-width: 30%;">搜索指定国家(编码)的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">cert="google"</td>
+                                    <td style="min-width: 30%;">搜索证书(https或者imaps等)中带有google的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">banner=users &amp;&amp; protocol=ftp</td>
+                                    <td style="min-width: 30%;">搜索FTP协议中带有users文本的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">type=service</td>
+                                    <td style="min-width: 30%;">搜索所有协议资产，支持subdomain和service两种。</td>
+                                    <td style="min-width: 28%;">搜索所有协议资产</td>
+                                    </tr><tr>
+                                    <td style="min-width: 42%;">os=windows</td>
+                                    <td style="min-width: 30%;">搜索Windows资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">server=="Microsoft-IIS/7.5"</td>
+                                    <td style="min-width: 30%;">搜索IIS 7.5服务器。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">app="HIKVISION-视频监控"</td>
+                                    <td style="min-width: 30%;">搜索海康威视设备</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">after="2017" &amp;&amp; before="2017-10-01"</td>
+                                    <td style="min-width: 30%;">时间范围段搜索</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">asn="19551"</td>
+                                    <td style="min-width: 30%;">搜索指定asn的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">org="Amazon.com, Inc."</td>
+                                    <td style="min-width: 30%;">搜索指定org(组织)的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">base_protocol="udp"</td>
+                                    <td style="min-width: 30%;">搜索指定udp协议的资产。</td>
+                                    <td style="min-width: 28%;">-</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">is_ipv6=true</td>
+                                    <td style="min-width: 30%;">搜索ipv6的资产</td>
+                                    <td style="min-width: 28%;">搜索ipv6的资产,只接受true和false。</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">is_domain=true</td>
+                                    <td style="min-width: 30%;">搜索域名的资产</td>
+                                    <td style="min-width: 28%;">搜索域名的资产,只接受true和false。</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip_ports="80,161"</td>
+                                    <td style="min-width: 30%;">搜索同时开放80和161端口的ip</td>
+                                    <td style="min-width: 28%;">搜索同时开放80和161端口的ip资产(以ip为单位的资产数据)</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">port_size="6"</td>
+                                    <td style="min-width: 30%;">查询开放端口数量等于"6"的资产</td>
+                                    <td style="min-width: 28%;">仅限FOFA会员使用</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">port_size_gt="3"</td>
+                                    <td style="min-width: 30%;">查询开放端口数量大于"3"的资产</td>
+                                    <td style="min-width: 28%;">仅限FOFA会员使用</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">port_size_lt="12"</td>
+                                    <td style="min-width: 30%;">查询开放端口数量小于"12"的资产</td>
+                                    <td style="min-width: 28%;">仅限FOFA会员使用</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip_country="CN"</td>
+                                    <td style="min-width: 30%;">搜索中国的ip资产(以ip为单位的资产数据)。</td>
+                                    <td style="min-width: 28%;">搜索中国的ip资产</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip_region="Zhejiang"</td>
+                                    <td style="min-width: 30%;">搜索指定行政区的ip资产(以ip为单位的资产数据)。</td>
+                                    <td style="min-width: 28%;">搜索指定行政区的资产</td>
+                                    </tr>
+                                    <tr><td style="min-width: 42%;">ip_city="Hangzhou"</td>
+                                    <td style="min-width: 30%;">搜索指定城市的ip资产(以ip为单位的资产数据)。</td>
+                                    <td style="min-width: 28%;">搜索指定城市的资产</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip_after="2019-01-01"</td>
+                                    <td style="min-width: 30%;">搜索2019-01-01以后的ip资产(以ip为单位的资产数据)。</td>
+                                    <td style="min-width: 28%;">搜索2019-01-01以后的ip资产</td>
+                                    </tr>
+                                    <tr>
+                                    <td style="min-width: 42%;">ip_before="2019-07-01"</td>
+                                    <td style="min-width: 30%;">搜索2019-07-01以前的ip资产(以ip为单位的资产数据)。</td>
+                                    <td style="min-width: 28%;">搜索2019-07-01以前的ip资产</td>
+                                    </tr>
+                                </tbody></table>
+                          </div>
+                          <span class="fofa_bq" style="margin-left: 40px;">条数</span>
+                          <select class="fofa_select" name="fofa_ts" id="fofa_ts"> 
+                            <option value="10">10</option>
+                            <option value="100">100</option> 
+                            <option value="1000">1000</option> 
+                            <option value="10000">10000</option> 
+                        </select>
+                        <button type="button" class="btn" onclick="run_form();" style="margin-left: 10px;">提交</button>
+                        <button type="button" class="btn" id="btn" style="pointer-events: none;opacity: 0.3;">下载</button>
+                        <a href="http://blog.like4h.top" rel="nofollow" target="_blank" class="btn">自定义、可以自己添加别的接口</a>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+     
+                <div class="mk-alert success tsk" style="display: none;">
+                </div>
+        
+                <div data-example-id="hoverable-table" style="margin-bottom: 70px;margin-top: 20px;">
+                <table style="table-layout: fixed;width: 100%;" id="table2html">
+                  <thead>
+                    <tr>
+                      <th width="70" style="text-align: center;">URL</th>
+                      <th width="35" style="text-align: center;">IP</th>
+                      <th width="40" style="text-align: center;">标题</th>
+                      <th width="5" style="text-align: center;">端口</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tdata" id="info">
+                        
+                  </tbody>
+                </table>
+              </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
