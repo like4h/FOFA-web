@@ -36,10 +36,9 @@ root@31b255a48d5d:/var/www/app# tree
 │           ├── layer.css
 │           ├── loading-0.gif
 │           ├── loading-1.gif
-│           └── loading-2.gif
-├── mima                #加密系统主要文件夹
+│           └── loading-2.gif              
 ├── MkEncrypt.php       #加密、配置密码文件
-├── page
+├── page                #加密系统主要文件夹
 │   ├── css
 │   │   ├── bootstrap.min.css
 │   │   ├── font-awesome.min.css
